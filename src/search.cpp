@@ -113,7 +113,7 @@ struct Thread {
                 return (eval + beta) / 2;
 
             // Null move pruning
-            if (!is_pv && !excluded && depth > 2 && eval > beta + 27 && board.colors[board.stm] & ~board.pieces[PAWN] & ~board.pieces[KING]) {
+            if (!is_pv && !excluded && depth > 2 && eval > beta + 150 - 11 * depth && board.colors[board.stm] & ~board.pieces[PAWN] & ~board.pieces[KING]) {
                 Board child = board;
 
                 child.stm ^= 1;
