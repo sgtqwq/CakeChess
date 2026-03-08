@@ -1,5 +1,12 @@
 #include "eval.cpp"
 
+struct Board;
+namespace NNUE {
+    bool init(i32 verbose = FALSE);
+    bool is_ready();
+    i32 evaluate(const Board& board);
+}
+
 struct Board {
     u64 checkers,
         hash,
@@ -216,6 +223,9 @@ struct Board {
     }
 
     i32 eval() {
+        if (NNUE::is_ready())
+            return NNUE::evaluate(*this);
+
         i32 eval = trend / 2 + (trend / 4 << 16),
             phases[2] {};
 
@@ -420,3 +430,5 @@ struct Board {
             edit(i + A7, BLACK_PAWN);
     }
 } BOARD;
+
+#include "nnue.cpp"

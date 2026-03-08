@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="logo.png">
+<img src="logo.png">
   <h3>Chess 4K Engine</h3>
 
   [![License][badge-license]][link-license]
@@ -8,9 +8,11 @@
 </div>
 
 ## Overview
-A c++ chess engine that fits into 4KiB
+
+A c++ NNUE chess engine that doesn't fits into 4KiB
 
 It supports the following subset of the UCI protocol:
+
 - `uci`
 - `isready`
 - `position startpos moves ...`
@@ -18,6 +20,7 @@ It supports the following subset of the UCI protocol:
 - `quit`
 
 Additional support for non-4K builds:
+
 - `ucinewgame`
 - `position fen ... moves ...`
 - `go infinite`
@@ -25,19 +28,23 @@ Additional support for non-4K builds:
 The first message is always regarded as `uci` due to the space restriction
 
 ## Building
+
 Building c4ke requires `g++` that supports `c++23`:
+
 ```
-git clone https://github.com/citrus610/c4ke
+git clone https://github.com/sgtqwq/CakeChess
 cd c4ke
 make c4ke
 ```
-To build c4ke-mini on Linux, run:
-```
-make mini
-```
+
+
 
 ## Minification
+
+Outdated.
+
 The minifier isn't general-purpose and won't work on all c++ code
+
 - Removing whitespaces
 - Removing single-line comments
 - Removing `#ifdef` blocks (usually for OpenBench compliance code)
@@ -45,11 +52,14 @@ The minifier isn't general-purpose and won't work on all c++ code
 - Renaming identifiers
 
 ## Features
+
 ### Board representation
+
 - Bitboard
 - 8x8 Mailbox
 - Hyperbola Quintessence move generation
-### Search
+  
+  ### Search
 - Iterative deepening
 - Aspiration windows
 - Lazy SMP
@@ -87,7 +97,9 @@ The minifier isn't general-purpose and won't work on all c++ code
   - Continuation correction history
     - 1-ply
     - 2-ply
-### Evaluation
+      
+      ### Evaluation
+- NNUE (768->32)x2->1,Training on ~1.5B Lc0 data
 - Material
 - Rank/file piece-square tables
 - Bishop pair
@@ -110,16 +122,17 @@ The minifier isn't general-purpose and won't work on all c++ code
   - King ring attack
   - Queenless attack
 - Endgame scaling
-### Time management
+  
+  ### Time management
 - Soft limit
 - Hard limit
 - Best move's node count scaling
 
 ## Thanks
-- Members of the MinusKelvin discord server for helping me and allowing me into their [OpenBench](https://analoghors.pythonanywhere.com/) instance
-- The following engines that I used as references:
-  - [ice4](https://github.com/MinusKelvin/ice4)
-  - [4ku](https://github.com/kz04px/4ku)
+
++ [citrus610](https://github.com/citrus610) for the original c4ke engine
+
++ Leela Chess Zero for it's brilliant dataset
 
 [badge-license]: https://img.shields.io/github/license/citrus610/c4ke?style=for-the-badge&label=license&color=success
 

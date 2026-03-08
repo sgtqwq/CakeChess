@@ -126,6 +126,7 @@ i32 main() {
 #ifdef OB_MINI
     // Bench
     if (argc > 1 && std::string(argv[1]) == "bench") {
+        NNUE::init(FALSE);
         bench();
         return 0;
     }
@@ -134,6 +135,7 @@ i32 main() {
 #ifdef OB
     // Perft
     if (argc > 2 && std::string(argv[1]) == "perft") {
+        NNUE::init(FALSE);
         BOARD.startpos();
 
         u64 time_1 = now();
@@ -150,9 +152,11 @@ i32 main() {
     string token;
     cin >> token;
 
+    NNUE::init(TRUE);
+
 #ifdef OB
-    cout << "id name c4ke v3.0" << endl;
-    cout << "id author citrus610 and cj5716" << endl;
+    cout << "id name CakeChess dev 20260308" << endl;
+    cout << "id author citrus610, cj5716 and sgtqwq" << endl;
     cout << "option name Hash type spin default 8 min 1 max 67108864" << endl;
     cout << "option name Threads type spin default 1 min 1 max 2048" << endl;
 #endif
